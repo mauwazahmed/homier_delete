@@ -2,10 +2,10 @@ import streamlit as st
 import requests
 from authlib.integrations.requests_client import OAuth2Session
 
-# Google OAuth Config
-CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID"
-CLIENT_SECRET = "YOUR_GOOGLE_CLIENT_SECRET"
-REDIRECT_URI = "http://localhost:8501"  # update with your deployed Streamlit URL
+# Load secrets from st.secrets
+CLIENT_ID = st.secrets["google_oauth"]["client_id"]
+CLIENT_SECRET = st.secrets["google_oauth"]["client_secret"]
+REDIRECT_URI = st.secrets["google_oauth"]["redirect_uri"]
 
 AUTHORIZATION_URL = "https://accounts.google.com/o/oauth2/auth"
 TOKEN_URL = "https://oauth2.googleapis.com/token"
@@ -13,7 +13,7 @@ USER_INFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo"
 
 API_BASE = "https://homier.vercel.app/users"
 
-st.set_page_config(page_title="Delete Account - Homier", page_icon="🗑️")
+st.set_page_config(page_title="Delete Account - Homier", page_icon="logo_main.png")
 
 st.image("logo_main.png", width=150)
 st.title("Delete Your Homier Account")
